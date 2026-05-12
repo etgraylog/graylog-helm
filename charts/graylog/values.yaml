@@ -181,7 +181,11 @@ graylog:
     runAsUser: 1100
     runAsGroup: 1100
     fsGroup: 1100
-  containerSecurityContext: {}
+  containerSecurityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop: ["ALL"]
+      add: ["NET_BIND_SERVICE"]
   podAnnotations: {}
   nodeSelector: {}
   tolerations: []
@@ -270,7 +274,8 @@ datanode:
   podSecurityContext:
     fsGroup: 999
     fsGroupChangePolicy: "OnRootMismatch"
-  containerSecurityContext: {}
+  containerSecurityContext:
+    allowPrivilegeEscalation: false
   podAnnotations: {}
   nodeSelector: {}
   tolerations: []
